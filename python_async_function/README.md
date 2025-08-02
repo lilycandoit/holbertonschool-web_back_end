@@ -59,15 +59,16 @@ By completing this project, you will be able to:
 
 ---
 
-## 🧪 Project Structure
+## 📁 Project Structure
 
 ```bash
 python_async_function/
-├── 0-basic_async_syntax.py      # Task 0: async function with random wait
-├── 1-*.py                       # Task 1: concurrency with gather()
-├── 2-*.py                       # Task 2: async task creation
-├── ...                          # More tasks to follow
-├── README.md                    # Project overview and async insights
+├── 0-basic_async_syntax.py      # Task 0: Define wait_random coroutine
+├── 1-concurrent_coroutines.py   # Task 1: Run wait_random concurrently n times
+├── 2-measure_runtime.py         # Task 2: Time execution of concurrent coroutines
+├── 3-tasks.py                   # Task 3: Return an asyncio.Task from a coroutine
+├── 4-tasks.py                   # Task 4: Run multiple scheduled tasks concurrently
+├── README.md                    # Summary and explanation of the project
 ```
 
 ---
@@ -102,5 +103,78 @@ This mirrors how real-world systems like API gateways, crawlers, and background 
 * [Python Docs: random](https://docs.python.org/3/library/random.html)
 
 ---
+
+## 🧠 Concept-by-Task Summary
+
+### ✅ Task 0: `wait_random(max_delay)`
+
+* Defines an `async def` coroutine that:
+
+  * Waits for a random float between 0 and `max_delay` using `await asyncio.sleep(...)`
+  * Returns the delay
+* Key learning: **basic coroutine + await**
+
+---
+
+### ✅ Task 1: `wait_n(n, max_delay)`
+
+* Spawns `n` coroutines using `wait_random(max_delay)`
+* Runs them **concurrently** using `asyncio.gather`
+* Returns a list of delays (in order of start)
+* Key learning: **concurrent execution using gather**
+
+---
+
+### ✅ Task 2: `measure_time(n, max_delay)`
+
+* Uses `time.perf_counter()` to measure how long `wait_n` takes
+* Returns `total_time / n` as average per coroutine
+* Key learning: **performance measurement** for async code
+
+---
+
+### ✅ Task 3: `task_wait_random(max_delay)`
+
+* Regular function (not async!) that:
+
+  * Returns an `asyncio.Task` using `asyncio.create_task(wait_random(...))`
+* Key learning: **how to wrap and schedule a coroutine as a Task**
+
+---
+
+### ✅ Task 4: `task_wait_n(n, max_delay)`
+
+* Like `wait_n`, but uses `task_wait_random(...)` to create `n` **Task** objects
+* Uses `asyncio.as_completed()` to collect results **in the order they finish**
+* Returns list of delays
+* Key learning: **low-level async task management**, and how to handle completion order manually
+
+---
+
+## 🔄 Async Concepts Practiced
+
+| Concept                  | Description                                                        |
+| ------------------------ | ------------------------------------------------------------------ |
+| `async def`              | Defines a coroutine (pausable function)                            |
+| `await`                  | Pauses until a coroutine finishes                                  |
+| `asyncio.run()`          | Runs async code from the top level                                 |
+| `asyncio.gather()`       | Runs multiple coroutines in parallel and returns results in order  |
+| `asyncio.as_completed()` | Yields coroutines one-by-one as they complete                      |
+| `asyncio.create_task()`  | Converts a coroutine into a scheduled task                         |
+| `asyncio.Task`           | Represents a scheduled coroutine (can be cancelled, awaited later) |
+
+---
+
+## 🔍 Real-World Applications
+
+These concepts apply to:
+
+* API clients that send many requests at once
+* Downloaders and scrapers that fetch URLs concurrently
+* Servers handling many users without blocking
+* Games and simulations with time-based events
+
+---
+
 
 
