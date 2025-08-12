@@ -4,7 +4,7 @@ Deletion-resilient hypermedia pagination
 """
 
 import csv
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 
 
 class Server:
@@ -12,8 +12,8 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self) -> None:
-        self.__dataset: Optional[List[List[str]]] = None
-        self.__indexed_dataset: Optional[Dict[int, List[str]]] = None
+        self.__dataset = None
+        self.__indexed_dataset = None
 
     def dataset(self) -> List[List[str]]:
         """Return the cached dataset (list of rows) without the header row."""
@@ -34,7 +34,7 @@ class Server:
             self.__indexed_dataset = dict(enumerate(truncated))
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: Optional[int] = None,
+    def get_hyper_index(self, index: int = None,
                         page_size: int = 10) -> Dict[str, Any]:
         """
         skips over missing keys and keeps returning the next available rows.
@@ -83,7 +83,7 @@ class Server:
             cursor += 1
 
         # Next cursor is first position after the last returned item
-        next_index: Optional[int] = cursor if cursor <= max_key else None
+        next_index: int = cursor if cursor <= max_key else None
 
         return {
             "index": index,
