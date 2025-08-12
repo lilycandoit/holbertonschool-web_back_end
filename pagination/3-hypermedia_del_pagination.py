@@ -34,8 +34,7 @@ class Server:
             self.__indexed_dataset = dict(enumerate(truncated))
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None,
-                        page_size: int = 10) -> Dict:
+    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
         skips over missing keys and keeps returning the next available rows.
 
