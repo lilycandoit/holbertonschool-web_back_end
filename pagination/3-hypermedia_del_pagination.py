@@ -35,7 +35,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None,
-                        page_size: int = 10) -> Dict[str, Any]:
+                        page_size: int = 10) -> Dict:
         """
         skips over missing keys and keeps returning the next available rows.
 
@@ -76,7 +76,7 @@ class Server:
             cursor += 1
 
         # Collect up to page_size existing rows, skipping any missing keys
-        data: List[List[str]] = []
+        data = []
         while cursor <= max_key and len(data) < page_size:
             if cursor in indexed:
                 data.append(indexed[cursor])
