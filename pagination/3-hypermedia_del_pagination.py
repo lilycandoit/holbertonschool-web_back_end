@@ -15,7 +15,7 @@ class Server:
         self.__dataset = None
         self.__indexed_dataset = None
 
-    def dataset(self) -> List[List[str]]:
+    def dataset(self) -> List[List]:
         """Return the cached dataset (list of rows) without the header row."""
         if self.__dataset is None:
             with open(self.DATA_FILE, encoding="utf-8") as f:
@@ -24,7 +24,7 @@ class Server:
             self.__dataset = data[1:]  # drop header
         return self.__dataset
 
-    def indexed_dataset(self) -> Dict[int, List[str]]:
+    def indexed_dataset(self) -> Dict[int, List]:
         """
         Return the dataset indexed by position starting at 0.
         """
