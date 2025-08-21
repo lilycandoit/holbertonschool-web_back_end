@@ -1,8 +1,11 @@
 export default function cleanSet(set, startString) {
-  if (typeof startString !== 'string')
+  if (typeof startString !== 'string') {
     return '';
+  }
 
-  if (startString === '') return '\n';
+  if (startString === '') {
+    return '\n';
+  }
 
   const result = [];
 
@@ -10,7 +13,7 @@ export default function cleanSet(set, startString) {
     if (item.startsWith(startString)) {
       result.push(item.slice(startString.length));
     }
-  })
+  });
 
   return result.join('-');
 }
