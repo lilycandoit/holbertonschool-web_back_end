@@ -12,5 +12,5 @@ export default function updateStudentGradeByCity(students, city, updates) {
         ...student, // spread existing student properties
         grade: found ? found.grade : 'N/A', // assign grade if found, else "N/A"
       };
-    })
+    });
 }
