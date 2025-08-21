@@ -20,7 +20,7 @@ module.exports = {
     'no-console': 'off',
     'no-shadow': 'off',
     'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
-    "indent": ['error', 2],
+    'indent': ['error', 2],
   },
   overrides: [
     {
