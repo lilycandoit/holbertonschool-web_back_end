@@ -1,6 +1,4 @@
-const { log } = require('console');
 const fs = require('fs');
-const { queryObjects } = require('v8');
 
 function countStudents(path) {
   let data;
@@ -17,7 +15,7 @@ function countStudents(path) {
     return;
   }
 
-  const [, ...rows] = lines; 
+  const [, ...rows] = lines;
 
   const students = rows.map((row) => row.trim()).filter((row) => row !== '');
 
