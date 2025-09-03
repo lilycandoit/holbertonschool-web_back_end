@@ -22,18 +22,15 @@ function countStudents(path) {
   const total = students.length;
 
   const groups = {};
-  students.forEach(student => {
-    [firstname, , , field] = student.split(',');
-    //console.log(firstname, field);
+  students.forEach((student) => {
+    const [firstname, , , field] = student.split(',');
 
     if (!groups[field]) {
       groups[field] = [];
     }
     groups[field].push(firstname);
-    //console.log(groups[field]);
-  })
+  });
 
-  console.log(groups);
   console.log(`Number of students: ${total}`);
 
   for (const [field, list] of Object.entries(groups)) {
