@@ -33,7 +33,7 @@ async function countStudents(path) {
 
     for (const [field, list] of Object.entries(groups)) {
       console.log(
-        `Number of students in ${field}: ${list.length}. List: ${list}`
+        `Number of students in ${field}: ${list.length}. List: ${list.join(', ')}`
       );
     }
   } catch (error) {
