@@ -9,13 +9,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', (req, res) => {
+  res.type('text/plain');
+  res.write('This is the list of our students\n');
+  
   countStudents(process.argv[2])
     .then((output) => {
-      res.type('text/plain');
-      res.send(`This is the list of our students\n${output}`);
+      res.end(output);
     })
     .catch(() => {
-      res.type('text/plain');
       res.end('Cannot load the database');
     });
 });
