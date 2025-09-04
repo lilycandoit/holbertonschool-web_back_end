@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 
-export async function readDatabase(path) {
+export default async function readDatabase(path) {
   try {
     const data = await fs.readFile(path, 'utf-8');
     const lines = data
