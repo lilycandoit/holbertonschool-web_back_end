@@ -5,9 +5,9 @@ const app = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
 
-  if (req.url == '/') {
+  if (req.url === '/') {
     res.end('Hello Holberton School!');
-  } else if (req.url == '/students') {
+  } else if (req.url === '/students') {
     res.write('This is the list of our students\n');
 
     countStudents(process.argv[2])
@@ -16,12 +16,12 @@ const app = http.createServer((req, res) => {
       })
       .catch(() => {
         res.end('Cannot load the database');
-      })
+      });
   } else {
     res.end('Not found');
   }
-})
+});
 
-app.listen(1245)
+app.listen(1245);
 
-module.exports = app
+module.exports = app;
