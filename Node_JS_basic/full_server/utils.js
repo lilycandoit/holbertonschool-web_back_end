@@ -29,5 +29,3 @@ export default async function readDatabase(path) {
     throw new Error(`Error reading database: ${error.message}`);
   }
 }
-
-readDatabase('../database.csv');

@@ -5,7 +5,7 @@ export default class StudentsController {
   static async getAllStudents(req, res) {
     try {
       const students = await readDatabase(process.argv[2]);
-      const header = 'This is the list of our students\n';
+      const header = 'This is the list of our students';
       const lines = [];
 
       const sortedFields = Object.keys(students).sort((a, b) =>
