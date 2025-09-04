@@ -22,7 +22,6 @@ export default async function readDatabase(path) {
       studentsByField[field].push(firstname);
     });
 
-    console.log(studentsByField);
     return studentsByField;
 
   } catch (error) {
