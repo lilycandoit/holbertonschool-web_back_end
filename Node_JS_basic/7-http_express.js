@@ -11,7 +11,6 @@ app.get('/', (req, res) => {
 app.get('/students', (req, res) => {
   res.type('text/plain');
   res.write('This is the list of our students\n');
-  
   countStudents(process.argv[2])
     .then((output) => {
       res.end(output);
