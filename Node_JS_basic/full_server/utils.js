@@ -1,30 +1,29 @@
-import fs from 'fs/promises';
+import { promises as fs } from 'fs';
 
-export default async function readDatabase(path) {
+export default async function readDatabase(filepath) {
   try {
-    const data = await fs.readFile(path, 'utf-8');
-    const lines = data
-      .trim()
-      .split('\n')
-      .filter(Boolean); // shorthand to make sure no empty invalid lines
-    // because empty string is Falsy in JS
-    // same as: .filter(line => line != '')
+    const data = await fs.readFile(filepath, 'utf8');
+    const lines = data.trim().split('\n');
+    const students = lines.slice(1);
 
-    const [, ...rows] = lines;
+    if (students.length === 0) {
+      throw new Error('Cannot load the database');
+    }
 
-    const studentsByField = {};
+    const fieldStudents = {};
 
-    rows.forEach((row) => {
-      const [firstname, , , field] = row.split(',');
-      if (!studentsByField[field]) {
-        studentsByField[field] = [];
+    students.forEach((line) => {
+      const parts = line.split(',');
+      const firstname = parts[0];
+      const field = parts[3];
+
+      if (!fieldStudents[field]) {
+        fieldStudents[field] = [];
       }
-      studentsByField[field].push(firstname);
+      fieldStudents[field].push(firstname);
     });
 
-    // console.log(studentsByField);
-    return studentsByField;
-
+    return fieldStudents;
   } catch (error) {
     throw new Error('Cannot load the database');
   }
