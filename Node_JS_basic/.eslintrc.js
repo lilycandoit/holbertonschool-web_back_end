@@ -34,4 +34,11 @@ module.exports = {
       excludedFiles: 'babel.config.js',
     },
   ],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js'],
+      },
+    },
+  },
 };
