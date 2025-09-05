@@ -22,9 +22,10 @@ export default async function readDatabase(path) {
       studentsByField[field].push(firstname);
     });
 
+    // console.log(studentsByField);
     return studentsByField;
 
   } catch (error) {
-    throw new Error(`Error reading database: ${error.message}`);
+    throw new Error('Cannot load the database');
   }
 }
