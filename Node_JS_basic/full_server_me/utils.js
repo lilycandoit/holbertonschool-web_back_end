@@ -24,7 +24,6 @@ export default async function readDatabase(path) {
 
     // console.log(studentsByField);
     return studentsByField;
-
   } catch (error) {
     throw new Error('Cannot load the database');
   }

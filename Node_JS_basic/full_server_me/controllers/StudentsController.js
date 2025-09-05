@@ -8,16 +8,14 @@ export default class StudentsController {
       const header = 'This is the list of our students';
       const lines = [];
 
-      const sortedFields = Object.keys(students).sort((a, b) =>
-        a.localeCompare(b, undefined, { sensitivity: 'base' })
-      );
+      const sortedFields = Object.keys(students).sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
 
       sortedFields.forEach((field) => {
         const names = students[field].sort();
         lines.push(
           `Number of students in ${field}: ${names.length}. List: ${names.join(
-            ', '
-          )}`
+            ', ',
+          )}`,
         );
       });
 
@@ -31,7 +29,7 @@ export default class StudentsController {
   // second method
   static async getAllStudentsByMajor(req, res) {
     const { major } = req.params;
-    if (major != 'CS' && major != 'SWE') {
+    if (major !== 'CS' && major !== 'SWE') {
       res.status(500).send('Major parameter must be CS or SWE');
       return;
     }
